@@ -1,0 +1,15 @@
+# Runtime dependencies for app.py.
+#
+# scikit-learn is pinned exactly: models.joblib is a pickle of fitted
+# estimators, and unpickling across a different scikit-learn version
+# can warn or break. Re-run train_models.py after changing this pin.
+#
+# Not listed, because the deployed app never reads the workbook:
+# openpyxl — only needed locally to re-run train_models.py.
+
+streamlit>=1.28
+pandas>=2.0
+scikit-learn==1.9.0
+joblib>=1.3
+plotly>=5.15
+matplotlib>=3.7

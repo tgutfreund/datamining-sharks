@@ -1,0 +1,35 @@
+# This repo deploys the Streamlit app and nothing else. Tracked files:
+#   app.py, data_loader.py, train_models.py,
+#   models.joblib, requirements.txt
+#
+# The raw sighting records are deliberately NOT tracked. app.py loads the
+# pre-trained trees from models.joblib, so the workbook is only needed
+# locally when re-running train_models.py.
+#
+# Each rule below ignores a whole class of file, then re-includes the ones
+# the app needs. ORDER MATTERS: a negation must come after the pattern it
+# overrides, or the app silently loses its code or its models.
+
+# Python: keep the app, its loader and the training script
+# (drops the 01-03 pipeline and q1-q4 analysis scripts).
+*.py
+!app.py
+!data_loader.py
+!train_models.py
+
+# Data: none of it ships. Raw source, intermediate pipeline outputs and
+# Copernicus downloads all stay local.
+*.xlsx
+*.xls
+*.csv
+*.nc
+
+# Excel lock files, created while a workbook is open in Excel
+~$*
+
+# Generated analysis outputs (q1-q4)
+outputs/
+
+__pycache__/
+*.pyc
+.venv/
